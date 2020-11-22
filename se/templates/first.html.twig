@@ -44,7 +44,29 @@
       </form>
    </div>
 </div>
+<h2>Period:</h2>
+<div class="table">
+    <div class="thead">
+      <div class="tr">
+         <div class="td">Datum von</div>
+         <div class="td">Datum bis</div>
+         <div class="td"></div>
+      </div>
+   </div>
+   <div class="tbody">
+      <form class="tr" action="index.php" method="post">
+         <div class="td"><input type="datetime-local" name="fromdate"></div>
+         <div class="td"><input type="datetime-local" name="todate"></div>
+         <div class="td action"> 
+            <button type="submit" name="search_button" value="search">Suche</button>
+         </div>
+      </form>
+   </div>
+</div>
 <h2>Entries:</h2>
+{% if dateFrom and dateTo %}
+   <p>FROM {{dateFrom}} TO {{dateTo}}</p>
+{% endif %}
 <div class="table">
    <div class="thead">
       <div class="tr">
@@ -62,8 +84,8 @@
       {% for user in input %}
       <form class="tr" action="index.php" method="post">
          <input type="hidden" name="userID" value={{user.id}}>
-         <div class="td"><input type="datetime-local" name="dateinfect"></div>
-         <div class="td"><input type="datetime-local" name="dateend"></div>
+         <div class="td"><input type="datetime-local" name="dateinfect" value="{{ user.dateinfect }}"></div>
+         <div class="td"><input type="datetime-local" name="dateend" value="{{ user.dateend }}"></div>
          <div class="td"><input type="number" name="age" value="{{ user.age }}"></div>
          <div class="td">
             <select name="gender" >
