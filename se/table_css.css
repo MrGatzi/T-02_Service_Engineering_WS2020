@@ -1,31 +1,56 @@
-.table
-{
-	display:table;
-	border-collapse:separate;
-	border-spacing:2px;
+/*.table*/
+/*{*/
+/*	display:table;*/
+/*	border-collapse:separate;*/
+/*	border-spacing:2px;*/
+/*}*/
+/*.thead*/
+/*{*/
+/*	display:table-header-group;*/
+/*	color:white;*/
+/*	font-weight:bold;*/
+/*	background-color:grey;*/
+/*}*/
+/*.tbody*/
+/*{*/
+/*	display:table-row-group;*/
+/*}*/
+/*.tr*/
+/*{*/
+/*	display:table-row;*/
+/*}*/
+/*.td*/
+/*{*/
+/*	display:table-cell;*/
+/*	border:1px solid black;*/
+/*	padding:1px;*/
+/*}*/
+/*.tr.editing .td INPUT*/
+/*{*/
+/*	width:100px;*/
+/*}*/
+
+#newPatients {
+
 }
-.thead
-{
-	display:table-header-group;
-	color:white;
-	font-weight:bold;
-	background-color:grey;
+
+.delete-btn{
+    background: darkred;
 }
-.tbody
-{
-	display:table-row-group;
+
+#container {
+    padding: 2em;
 }
-.tr
-{
-	display:table-row;
+
+ h1,h4 {
+    text-align: center;
 }
-.td
-{
-	display:table-cell;
-	border:1px solid black;
-	padding:1px;
-}
-.tr.editing .td INPUT
-{
-	width:100px;
-}
+
+ #entries,#newPatients,#filter{
+     padding: 1em;
+ }
+
+th{
+     text-align: center;
+ }
+

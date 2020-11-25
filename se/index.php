@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
     <link rel="stylesheet" type="text/css" href="table_css.css">
+    <title>Corona Personen Service</title>
+    <link rel="icon" type="image/png" href="heart.png">
 </head>
 <body>
-<h1>MfCDSD</h1>
-<h2>My first Corona Daten Dashboard</h2>
+
+
 
 <?php
 require __DIR__ . '/vendor/autoload.php';

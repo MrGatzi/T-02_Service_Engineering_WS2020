@@ -1,118 +1,163 @@
-<h2>New</h2>
-<div class="table">
-   <div class="thead">
-      <div class="tr">
-         <div class="td">Datum Infektion</div>
-         <div class="td">Datum Ende</div>
-         <div class="td">Alter</div>
-         <div class="td">Geschlecht</div>
-         <div class="td">Vorerkrankungen</div>
-         <div class="td">Bezirk</div>
-         <div class="td">Bundesland</div>
-         <div class="td"></div>
-      </div>
-   </div>
-   <div class="tbody">
-      <form class="tr" action="index.php" method="post">
-         <div class="td"><input type="datetime-local" name="dateinfect"></div>
-         <div class="td"><input type="datetime-local" name="dateend"></div>
-         <div class="td"><input type="number" name="age"></div>
-         <div class="td">
-            <select name="gender" >
-               <option value="m" >M</option>
-               <option value="w">W</option>
-               <option value="u" selected="selected">U</option>
-            </select>
-         </div>
-         <div class="td"><input type="text" name="preill"></div>
-         <div class="td"><input type="text" name="district"></div>
-         <div class="td">
-            <select name="state">
-               <option value="oo"  >Oberösterreich</option>
-               <option value="w" selected="selected" >Wien</option>
-               <option value="no" >Niederösterreich</option>
-               <option value="bg" >Burgenland</option>
-               <option value="sty" >Steiermark</option>
-               <option value="k" >Kärnten</option>
-               <option value="t" >Tirol</option>
-               <option value="s" >Salzburg</option>
-               <option value="v" >Vorarlberg</option>
-            </select>
-         </div>
-         <div class="td action"> <button type="submit" name="add_button" value="add">Add</button>
-         </div>
-      </form>
-   </div>
-</div>
-<h2>Period:</h2>
-<div class="table">
-    <div class="thead">
-      <div class="tr">
-         <div class="td">Datum von</div>
-         <div class="td">Datum bis</div>
-         <div class="td"></div>
-      </div>
-   </div>
-   <div class="tbody">
-      <form class="tr" action="index.php" method="post">
-         <div class="td"><input type="datetime-local" name="fromdate"></div>
-         <div class="td"><input type="datetime-local" name="todate"></div>
-         <div class="td action"> 
-            <button type="submit" name="search_button" value="search">Suche</button>
-         </div>
-      </form>
-   </div>
-</div>
-<h2>Entries:</h2>
-{% if dateFrom and dateTo %}
-   <p>FROM {{dateFrom}} TO {{dateTo}}</p>
-{% endif %}
-<div class="table">
-   <div class="thead">
-      <div class="tr">
-         <div class="td">Datum Infektion</div>
-         <div class="td">Datum Ende</div>
-         <div class="td">Alter</div>
-         <div class="td">Geschlecht</div>
-         <div class="td">Vorerkrankungen</div>
-         <div class="td">Bezirk</div>
-         <div class="td">Bundesland</div>
-         <div class="td"></div>
-      </div>
-   </div>
-   <div class="tbody">
-      {% for user in input %}
-      <form class="tr" action="index.php" method="post">
-         <input type="hidden" name="userID" value={{user.id}}>
-         <div class="td"><input type="datetime-local" name="dateinfect" value="{{ user.dateinfect }}"></div>
-         <div class="td"><input type="datetime-local" name="dateend" value="{{ user.dateend }}"></div>
-         <div class="td"><input type="number" name="age" value="{{ user.age }}"></div>
-         <div class="td">
-            <select name="gender" >
-            <option value="m" {% if user.gender == 'm' %} selected="selected" {% endif %}>M</option>
-            <option value="w" {% if user.gender == 'w' %} selected="selected" {% endif %}>W</option>
-            <option value="u" {% if user.gender == 'u' %} selected="selected" {% endif %}>U</option>
-            </select>
-         </div>
-         <div class="td"><input type="text" name="preill" value="{{ user.preill }}"></div>
-         <div class="td"><input type="text" name="district" value="{{ user.district }}"></div>
-         <div class="td">
-            <select name="state">
-            <option value="oo" {% if user.state == 'oo' %} selected="selected" {% endif %} >Oberösterreich</option>
-            <option value="w" {% if user.state == 'w' %} selected="selected" {% endif %}>Wien</option>
-            <option value="no" {% if user.state == 'no' %} selected="selected" {% endif %}>Niederösterreich</option>
-            <option value="bg" {% if user.state == 'bg' %} selected="selected" {% endif %}>Burgenland</option>
-            <option value="sty" {% if user.state == 'sty' %} selected="selected" {% endif %}>Steiermark</option>
-            <option value="k" {% if user.state == 'k' %} selected="selected" {% endif %}>Kärnten</option>
-            <option value="t" {% if user.state == 't' %} selected="selected" {% endif %}>Tirol</option>
-            <option value="s" {% if user.state == 's' %} selected="selected" {% endif %}>Salzburg</option>
-            <option value="v" {% if user.state == 'v' %} selected="selected" {% endif %}>Vorarlberg</option>
-            </select>
-         </div>
-         <div class="td action"> <button type="submit" name="update_button" value="update">Update</button>
-            <button type="submit" name="delete_button" value="delete">Delete</button>
-         </div>
-      </form>
-      {% endfor %}
-   </div>
+<div id="container">
+    <h1>Corona Personen Service</h1>
+    <div id="newPatients">
+        <h4>Neuer Eintrag</h4>
+        <form action="index.php" method="post">
+            <table>
+                <thead>
+                <tr>
+                    <th>Datum Infektion</th>
+                    <th>Datum Ende</th>
+                    <th>Alter</th>
+                    <th>Geschlecht</th>
+                    <th>Vorerkrankungen</th>
+                    <th>Bezirk</th>
+                    <th>Bundesland</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="datetime-local" name="dateinfect"></td>
+                    <td><input type="datetime-local" name="dateend"></td>
+                    <td><input type="number" name="age"></td>
+                    <td>
+                        <select class="browser-default" name="gender">
+                            <option value="m">M</option>
+                            <option value="w">W</option>
+                            <option value="u" selected="selected">U</option>
+                        </select>
+                    </td>
+                    <td><input type="text" name="preill"></td>
+                    <td><input type="text" name="district"></td>
+                    <td>
+                        <select class="browser-default" name="state">
+                            <option value="oo">Oberösterreich</option>
+                            <option value="w" selected="selected">Wien</option>
+                            <option value="no">Niederösterreich</option>
+                            <option value="bg">Burgenland</option>
+                            <option value="sty">Steiermark</option>
+                            <option value="k">Kärnten</option>
+                            <option value="t">Tirol</option>
+                            <option value="s">Salzburg</option>
+                            <option value="v">Vorarlberg</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="waves-effect waves-light btn" type="submit" name="add_button" value="add">Speichern
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div id="filter">
+        <h4>Zeitraum</h4>
+        <form action="index.php" method="post">
+            <table>
+                <thead>
+                <tr>
+                    <th>Datum von</th>
+                    <th>Datum bis</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><input type="datetime-local" name="fromdate"></td>
+                    <td><input type="datetime-local" name="todate"></td>
+                    <td>
+                        <button class="waves-effect waves-light btn" type="submit" name="search_button" value="search">
+                            Suche
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div id="entries">
+        <h4>Einträge</h4>
+        {% if dateFrom and dateTo %}
+            <p>FROM {{ dateFrom }} TO {{ dateTo }}</p>
+        {% endif %}
+
+        {% for user in input %}
+            <form action="index.php" method="post" id="form_{{ user.id }}"></form>
+        {% endfor %}
+
+        <table class="striped">
+            <thead>
+            <tr>
+                <th>Datum Infektion</th>
+                <th>Datum Ende</th>
+                <th>Alter</th>
+                <th>Geschlecht</th>
+                <th>Vorerkrankungen</th>
+                <th>Bezirk</th>
+                <th>Bundesland</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in input %}
+                <tr>
+                    <input form="form_{{ user.id }}" type="hidden" name="userID" value={{ user.id }}>
+                    <td><input form="form_{{ user.id }}" type="datetime-local" name="dateinfect"
+                               value="{{ user.dateinfect }}"></td>
+                    <td><input form="form_{{ user.id }}" type="datetime-local" name="dateend"
+                               value="{{ user.dateend }}">
+                    </td>
+                    <td><input form="form_{{ user.id }}" type="number" name="age" value="{{ user.age }}"></td>
+                    <td>
+                        <select name="gender" class="browser-default" form="form_{{ user.id }}">
+                            <option value="m" {% if user.gender == 'm' %} selected="selected" {% endif %}>M</option>
+                            <option value="w" {% if user.gender == 'w' %} selected="selected" {% endif %}>W</option>
+                            <option value="u" {% if user.gender == 'u' %} selected="selected" {% endif %}>U</option>
+                        </select>
+                    </td>
+                    <td><input form="form_{{ user.id }}" type="text" name="preill" value="{{ user.preill }}"></td>
+                    <td><input form="form_{{ user.id }}" type="text" name="district" value="{{ user.district }}"></td>
+                    <td>
+                        <select form="form_{{ user.id }}" class="browser-default" name="state">
+                            <option value="oo" {% if user.state == 'oo' %} selected="selected" {% endif %} >
+                                Oberösterreich
+                            </option>
+                            <option value="w" {% if user.state == 'w' %} selected="selected" {% endif %}>Wien</option>
+                            <option value="no" {% if user.state == 'no' %} selected="selected" {% endif %}>
+                                Niederösterreich
+                            </option>
+                            <option value="bg" {% if user.state == 'bg' %} selected="selected" {% endif %}>Burgenland
+                            </option>
+                            <option value="sty" {% if user.state == 'sty' %} selected="selected" {% endif %}>Steiermark
+                            </option>
+                            <option value="k" {% if user.state == 'k' %} selected="selected" {% endif %}>Kärnten
+                            </option>
+                            <option value="t" {% if user.state == 't' %} selected="selected" {% endif %}>Tirol</option>
+                            <option value="s" {% if user.state == 's' %} selected="selected" {% endif %}>Salzburg
+                            </option>
+                            <option value="v" {% if user.state == 'v' %} selected="selected" {% endif %}>Vorarlberg
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <button form="form_{{ user.id }}" class="waves-effect waves-light btn" type="submit"
+                                name="update_button" value="update">
+                            Update
+                        </button>
+
+                    </td>
+                    <td>
+                        <button form="form_{{ user.id }}" class="delete-btn waves-effect waves-light btn" type="submit"
+                                name="delete_button"
+                                value="delete">
+                            X
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
